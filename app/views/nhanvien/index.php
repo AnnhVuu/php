@@ -10,7 +10,6 @@
 
 <body>
     <div class="container mt-4">
-        <!-- Added greeting message -->
         <?php if (isset($_SESSION['user'])): ?>
             <div class="alert alert-info">
                 Xin chào, <?= htmlspecialchars($_SESSION['user']['username']) ?>
