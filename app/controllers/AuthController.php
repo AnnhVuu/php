@@ -25,11 +25,24 @@ class AuthController
 
     public function logout()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start(); // Ensure session is started
+        session_unset(); // Clear all session variables
+        session_destroy(); // Destroy the session
+
+        // Clear the session cookie
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
         }
-        session_destroy();
-        header('Location: /8241_LeLamAnhVu/login');
+        header('Location: /8241_LeLamAnhVu/login'); // Redirect to login page
         exit;
     }
 }

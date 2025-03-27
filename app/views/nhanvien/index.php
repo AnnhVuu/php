@@ -10,6 +10,12 @@
 
 <body>
     <div class="container mt-4">
+        <!-- Added greeting message -->
+        <?php if (isset($_SESSION['user'])): ?>
+            <div class="alert alert-info">
+                Xin chào, <?= htmlspecialchars($_SESSION['user']['username']) ?>
+            </div>
+        <?php endif; ?>
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
             <h2 class="text-center flex-grow-1">THÔNG TIN NHÂN VIÊN</h2>
             <?php if (isset($_SESSION['user'])): ?>

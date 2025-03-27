@@ -10,7 +10,7 @@ $url = rtrim($url, '/');
 $url = filter_var($url, FILTER_SANITIZE_URL);
 $url = explode('/', $url);
 
-// Adjust redirection logic to allow users with the 'user' role to access the NhanVienController index page
+// Adjust redirection logic to handle logout properly
 if (empty($url[0]) || strtolower($url[0]) !== 'login') {
     if (!isset($_SESSION['user'])) {
         header('Location: /8241_LeLamAnhVu/login');
